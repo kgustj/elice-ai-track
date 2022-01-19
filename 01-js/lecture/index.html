@@ -2,10 +2,17 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>WEB1 - JavaScript</title>
+        <title>My PortFolio</title>
+        <style>
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        </style>
     </head>
     <body>
-        <input type="button" value="dark" onclick="buttonControl();" />
+        <input type="button" value="DARK" onclick="nightButton();" />
+        <input type="button" value="DAY" onclick="dayButton();" />
         <h1><a href="index.html">WEB</a></h1>
         <ol>
             <li><a href="1.html">HTML</a></li>
@@ -15,9 +22,13 @@
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium ipsa expedita, consectetur eius suscipit sint unde nostrum odit fuga architecto rem exercitationem magni voluptatibus id, tempore voluptatum amet error natus!</p>
         <script>
             const body = document.querySelector("body");
-            function buttonControl() {
+            function nightButton() {
                 body.style.backgroundColor = "black";
                 body.style.color = "white";
+            }
+            function dayButton() {
+                body.style.backgroundColor = "white";
+                body.style.color = "black";
             }
         </script>
     </body>
