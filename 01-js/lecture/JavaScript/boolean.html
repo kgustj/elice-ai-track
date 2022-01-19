@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Boolean</title>
+    </head>
+    <body>
+        <h1>Boolean</h1>
+        <h1>Comparison Operator</h1>
+        <h1>Conditional Statements</h1>
+        <h1>조건문의 응용</h1>
+        <input
+            type="button"
+            value="로그인"
+            onclick="
+        const input = prompt('Please enter Password.');
+        if (input === 'password') {
+            this.value = `${input}, Hi!`;
+        } else {
+            this.value = 'Bye!';
+        }"
+        />
+        <script>
+            console.group("Boolean");
+            console.log("true =>", true);
+            console.log("false =>", false);
+            console.groupEnd("Boolean");
+
+            console.group("Comparison Operator");
+            console.log("1 >0", 1 > 0);
+            console.log("1 < 0", 1 < 0);
+            console.log("1 === 0", 1 === 0);
+            console.log("1 === 1", 1 === 1);
+            console.groupEnd("Comparison Operator");
+            // == 는 값만 비교
+            // ===는 값, 데이터타입 비교
+        </script>
+    </body>
+</html>
