@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <style>
+            input {
+                width: 15px;
+                height: 15px;
+                border: solid 0.5px gray;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            for (let i = 0; i < 10000; i++) {
+                document.write(`<input type="button" onmouseover="
+                if(event.altKey === true) {
+                    event.target.style.backgroundColor='red';
+                };
+                if(event.ctrlKey === true) {
+                    event.target.style.backgroundColor='';
+                };
+                ">`);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Event</title>
+    </head>
+    <body>
+        <input type="button" value="inline" onclick="alert(event.target.value)" />
+        <input type="button" value="addEventListener" id="ae" />
+        <input type="button" value="addEventListener 2" id="ae2" />
+        <script>
+            function clickHandle(event) {
+                alert(event.target.value);
+            }
+            function clickHandle2(event) {
+                alert(event.target.value);
+            }
+
+            document.querySelector("#ae").addEventListener("click", clickHandle);
+            document.querySelector("#ae").addEventListener("click", clickHandle2);
+
+            document.querySelector("#ae2").addEventListener("click", clickHandle);
+        </script>
+    </body>
+</html>
