@@ -82,23 +82,36 @@ function omok() {
                 }
 
                 // 승리에 필요한 조건
+                const win = function () {
+                    console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
+                    alert(`${turn === 1 ? "Black" : "White"} WIN!`);
+                };
+                const init = function () {
+                    for (let i = 0; i < axis; i++) {
+                        for (let j = 0; j < axis; j++) {
+                            map[i][j] = 0;
+                            panel.querySelectorAll(".row")[i].querySelectorAll(".col")[j].classList.remove("white", "black");
+                        }
+                    }
+                    blank = 0;
+                };
                 for (let i = 0; i < axis; i++) {
                     for (let j = 0; j < axis; j++) {
                         if (turn === map[i][j] && turn === map[i][j + 1] && turn === map[i][j + 2] && turn === map[i][j + 3] && turn === map[i][j + 4]) {
-                            console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
-                            alert(`${turn === 1 ? "Black" : "White"} WIN!`);
+                            win();
+                            init();
                             break;
                         } else if (turn === map[i][j] && turn === map[i + 1][j] && turn === map[i + 2][j] && turn === map[i + 3][j] && turn === map[i + 4][j]) {
-                            console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
-                            alert(`${turn === 1 ? "Black" : "White"} WIN!`);
+                            win();
+                            init();
                             break;
                         } else if (turn == map[i][j] && turn == map[i + 1][j + 1] && turn == map[i + 2][j + 2] && turn == map[i + 3][j + 3] && turn == map[i + 4][j + 4]) {
-                            console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
-                            alert(`${turn === 1 ? "Black" : "White"} WIN!`);
+                            win();
+                            init();
                             break;
                         } else if (turn == map[i][j + 4] && turn == map[i + 1][j + 3] && turn == map[i + 2][j + 2] && turn == map[i + 3][j + 1] && turn == map[i + 4][j]) {
-                            console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
-                            alert(`${turn === 1 ? "Black" : "White"} WIN!`);
+                            win();
+                            init();
                             break;
                         } else {
                             // pass
@@ -107,13 +120,7 @@ function omok() {
                 }
 
                 if (blank == axis ** 2) {
-                    for (let i = 0; i < axis; i++) {
-                        for (let j = 0; j < axis; j++) {
-                            map[i][j] = 0;
-                            panel.querySelectorAll(".row")[i].querySelectorAll(".col")[j].classList.remove("white", "black");
-                        }
-                    }
-                    blank = 0;
+                    init();
                 } else {
                     // pass
                 }
