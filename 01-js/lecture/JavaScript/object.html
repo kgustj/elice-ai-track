@@ -4,7 +4,70 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Array & Object</title>
     </head>
-    <body></body>
+    <body>
+        <h1>Array & Object</h1>
+        <script>
+            let array = ["html", "css", "js"];
+            document.write(array[0] + "<br>");
+            document.write(array[1] + "<br>");
+
+            let object1 = {
+                id: 1,
+                title: "html",
+                body: "html is html",
+            };
+            document.write(object1.id + "<br>");
+            document.write(object1.title + "<br>");
+
+            let object2 = {
+                id: 2,
+                title: "css",
+                body: "css is css",
+            };
+            let object = [object1, object2];
+            document.write(object[0].title + "<br>");
+
+            let object3 = [
+                {
+                    id: 1,
+                    title: "html",
+                    body: "html is html",
+                },
+                {
+                    id: 2,
+                    title: "css",
+                    body: "css is css",
+                },
+            ];
+            function read() {
+                document.write(object3[0].title + " => " + object3[0].body + "<br>");
+            }
+
+            let object4 = [
+                {
+                    id: 1,
+                    title: "html",
+                    body: "html is html",
+                    read: function () {
+                        document.write(this.title + " => " + this.body + "<br>");
+                    },
+                },
+                {
+                    id: 1,
+                    title: "html",
+                    body: "html is html",
+                    read: function () {
+                        document.write(this.title + " => " + this.body + "<br>");
+                    },
+                },
+            ];
+            object4[0].read();
+            read();
+
+            document.write(Math.PI + "<br>");
+            document.write(Math.random() + "<br");
+        </script>
+    </body>
 </html>
