@@ -73,9 +73,8 @@ function omok() {
                         console.log(axis - i < 10 ? `0${axis - i}` : `${String(axis - i)}`, map[i].slice(0, 15));
                     }
                     console.groupEnd("Map");
-
-                    // 돌이 이미 놓아진 자리를 클릭하면 턴 넘어가지 않게
                 } else {
+                    // 돌이 이미 놓아진 자리를 클릭하면 턴 넘어가지 않게
                     if (turn === 2) {
                         turn = 1;
                     } else {
