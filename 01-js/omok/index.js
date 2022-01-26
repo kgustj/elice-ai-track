@@ -61,9 +61,9 @@ function omok() {
                     map[i][j] = turn;
                     blank += 1;
                     if (map[i][j] === 1) {
-                        colTag.classList.add("black");
+                        this.classList.add("black");
                     } else {
-                        colTag.classList.add("white");
+                        this.classList.add("white");
                     }
 
                     // 콘솔 로그 기록
