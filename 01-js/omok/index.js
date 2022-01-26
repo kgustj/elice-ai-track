@@ -65,6 +65,7 @@ function omok() {
                     } else {
                         colTag.classList.add("white");
                     }
+
                     // 콘솔 로그 기록
                     console.log(`${turn === 1 ? "Black" : "White"} clicked ${alphabet.charAt(j)}${axis - i}, ${blank} ${blank === 1 ? "move" : "moves"}.`);
                     console.groupCollapsed("Map");
@@ -72,6 +73,7 @@ function omok() {
                         console.log(axis - i < 10 ? `0${axis - i}` : `${String(axis - i)}`, map[i].slice(0, 15));
                     }
                     console.groupEnd("Map");
+
                     // 돌이 이미 놓아진 자리를 클릭하면 턴 넘어가지 않게
                 } else {
                     if (turn === 2) {
@@ -87,6 +89,7 @@ function omok() {
                     alert(`${turn === 1 ? "Black" : "White"} WIN!`);
                 };
                 // 초기화
+
                 const init = function () {
                     for (let i = 0; i < axis; i++) {
                         for (let j = 0; j < axis; j++) {
@@ -96,6 +99,7 @@ function omok() {
                     }
                     blank = 0;
                 };
+
                 // 승리에 필요한 조건
                 for (let i = 0; i < axis; i++) {
                     for (let j = 0; j < axis; j++) {
