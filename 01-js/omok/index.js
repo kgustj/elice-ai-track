@@ -81,11 +81,12 @@ function omok() {
                     }
                 }
 
-                // 승리에 필요한 조건
+                // 승리시 출력
                 const win = function () {
                     console.log(`${turn == 1 ? "Black" : "White"} WIN!`);
                     alert(`${turn === 1 ? "Black" : "White"} WIN!`);
                 };
+                // 초기화
                 const init = function () {
                     for (let i = 0; i < axis; i++) {
                         for (let j = 0; j < axis; j++) {
@@ -95,6 +96,7 @@ function omok() {
                     }
                     blank = 0;
                 };
+                // 승리에 필요한 조건
                 for (let i = 0; i < axis; i++) {
                     for (let j = 0; j < axis; j++) {
                         if (turn === map[i][j] && turn === map[i][j + 1] && turn === map[i][j + 2] && turn === map[i][j + 3] && turn === map[i][j + 4]) {
@@ -119,6 +121,7 @@ function omok() {
                     }
                 }
 
+                // 바둑판이 전부 채워졌을 시 초기화
                 if (blank == axis ** 2) {
                     init();
                 } else {
