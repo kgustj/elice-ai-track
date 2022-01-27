@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>WEB1</title>
         <meta charset="utf-8" />
-        <title>WEB</title>
     </head>
     <body>
-        <h1>
-            <a
-                href="index.html"
-                onclick="
-                event.preventDefault();
-                mode = 'WELCOME';
-                article();"
-                >WEB
-            </a>
-        </h1>
+        <header>
+            <h1>
+                <a
+                    href="index.html"
+                    onclick="
+      event.preventDefault();
+      mode = 'WELCOME';
+      Article();"
+                    >WEB1
+                </a>
+            </h1>
+        </header>
         <nav>
             <ol></ol>
         </nav>
         <article></article>
-    </body>
-    <script>
-        let selectedId;
-        let mode = "WELCOME";
-        let object = [
-            {
-                id: 1,
-                title: "HTML",
-                body: "Html is html.",
-            },
-            {
-                id: 2,
-                title: "CSS",
-                body: "Css is css.",
-            },
-        ];
+        <ul>
+            <li>
+                <a
+                    href="/create"
+                    onclick="
+        event.preventDefault();
+        mode = 'CREATE';
+        Article();
+      "
+                    >create</a
+                >
+            </li>
+            <li>
+                <a
+                    href="/update"
+                    onclick="
+        event.preventDefault();
+        mode = 'UPDATE';
+        Article();
+      "
+                    >Update</a
+                >
+            </li>
+        </ul>
+        <script>
+            let selectedId = 1;
+            let mode = "CREATE";
+            let nextId = 3;
+            let topics = [
+                { id: 1, title: "html", body: "html is .." },
+                { id: 2, title: "css", body: "css is .." },
+            ];
 
-        function nav() {
-            let liTag = "";
-            for (let i in object) {
-                liTag += `<li>
-                    <a href="${object[i].id}.html" onclick=
-                    "event.preventDefault();
-                    mode = 'READ';
-                    selectedId = ${object[i].id};
-                    article();
-                    ">
-                        ${object[i].title} 
-                    </a>
-                </li>`;
-            }
-            document.querySelector("ol").innerHTML += liTag;
-        }
-        nav();
-
-        function article() {
-            let articleTag = "";
-            if (mode === "WELCOME") {
-                articleTag = `<h2>${mode}</h2>Hello, WEB.`;
-            } else if (mode === "READ") {
-                let body, title;
-                for (let i in object) {
-                    if (object[i].id === selectedId) {
-                        title = object[i].title;
-                        body = object[i].body;
-                        break;
+            function Article() {
+                let articleTag = "";
+                if (mode === "WELCOME") {
+                    articleTag = `<h2>Welcome</h2>Hello WEB`;
+                } else if (mode === "READ") {
+                    for (let i = 0; i < topics.length; i++) {
+                        let t = topics[i];
+                        if (t.id === selectedId) {
+                            articleTag = `<h2>${t.title}</h2>${t.body}`;
+                        }
                     }
+                } else if (mode === "CREATE") {
+                    articleTag = `
+          <h2>Create</h2>
+          <form onsubmit="
+            event.preventDefault();
+            let title = event.target.title.value;
+            let body = event.target.body.value;
+            topics.push({id:nextId, title:title, body:body});
+            Nav();
+            mode = 'READ';
+            selectedId = nextId;
+            Article();
+            nextId = nextId + 1;
+          ">
+            <p><input type="text" placeholder="title" name="title"></p>
+            <p><textarea placeholder="body" name="body"></textarea></p>
+            <p><input type="submit" value="Create"></p>
+          </form>
+        `;
+                } else if (mode === "UPDATE") {
+                    articleTag = `Update`;
                 }
-                articleTag = `<h2>${title}</h2>${body}`;
+                document.querySelector("article").innerHTML = articleTag;
             }
-            document.querySelector("article").innerHTML = articleTag;
-        }
-        article();
+            Article();
 
-        // 정공법
-        // const text = document.createTextNode("HTML");
-        // let a = document.createElement("a"),
-        //     li = document.createElement("li");
-        // a.setAttribute("href", "1.html");
-        // a.appendChild(text);
-        // li.appendChild(a);
-        // document.querySelector("ol").appendChild(li);
-    </script>
+            function Nav() {
+                let liTag = "";
+                for (let i = 0; i < topics.length; i++) {
+                    let t = topics[i];
+                    liTag =
+                        liTag +
+                        `<li><a href="/read/${t.id}" onclick="
+          event.preventDefault();
+          mode = 'READ';
+          selectedId =  ${t.id};
+          Article();
+        ">${t.title}</a></li>`;
+                }
+                document.querySelector("nav>ol").innerHTML = liTag;
+            }
+            Nav();
+        </script>
+    </body>
 </html>
