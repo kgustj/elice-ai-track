@@ -26,7 +26,6 @@ body {
     border: 1px solid black;
     cursor: pointer;
     flex: 1;
-    transition: 0.1s;
 }
 
 .col:hover:not(.black, .white) {
@@ -38,13 +37,11 @@ body {
 }
 
 .black {
-    /* border-radius: 38px; */
     background-image: url("./img/black.png");
     background-size: 38px;
 }
 
 .white {
-    /* border-radius: 38px; */
     background-image: url("./img/white.png");
     background-size: 38px;
 }
