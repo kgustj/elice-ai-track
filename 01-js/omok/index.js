@@ -45,7 +45,7 @@ function initTurn() {
     }
 }
 
-// 승리 시 초기화
+// 승리 시 보드 초기화
 function initBoard() {
     for (let i = 0; i < axis; i++) {
         for (let j = 0; j < axis; j++) {
@@ -58,6 +58,7 @@ function initBoard() {
     initTurn();
 }
 
+// 승리 시 알림
 function initWin() {
     if (turn === 1) {
         setTimeout(() => {
@@ -85,9 +86,9 @@ for (let i = 0; i < axis; i++) {
         colTag.classList.add("col");
         rowTag.appendChild(colTag);
 
+        // 돌이 클릭되면 실행
         function handleClick() {
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
             if (map[i][j] === 0) {
                 // 돌 놓기, DB와 화면에 출력
                 map[i][j] = turn;
@@ -113,6 +114,7 @@ for (let i = 0; i < axis; i++) {
                 }
             }
 
+            // 승리 조건 검색
             for (let i = 0; i < axis; i++) {
                 for (let j = 0; j < axis; j++) {
                     if (turn === map[i][j] && turn === map[i][j + 1] && turn === map[i][j + 2] && turn === map[i][j + 3] && turn === map[i][j + 4]) {
