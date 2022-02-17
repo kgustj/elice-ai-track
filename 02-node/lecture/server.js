@@ -11,3 +11,5 @@ function onRequest(req, res) {
 }
 
 http.createServer(onRequest).listen(8080);
+
+// 220215 실습
