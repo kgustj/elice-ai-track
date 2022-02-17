@@ -37,7 +37,7 @@ const menuPicker = () => {
 };
 
 const mbti = [
-    "INTJ - 용의주도한 전략가 (Architect)", //
+    "INTJ - 용의주도한 전략가 (Architect)",
     "INTP - 논리적인 사색가 (Logician)",
     "ENTJ - 대담한 통솔자 (Commander)",
     "ENTP - 뜨거운 논쟁을 즐기는 변론가 (Debater)",
@@ -52,7 +52,7 @@ const mbti = [
     "ISTP - 만능 재주꾼 (Virtuoso)",
     "ISFP - 호기심 많은 예술가 (Adventurer)",
     "ESTP - 모험을 즐기는 사업가 (Entrepreneur)",
-    "ESFP - 자유로운 영혼의 연예인 (Entertainer)",
+    "ESFP - 자유로운 영혼의 연예인 (Entertainer)", //
 ];
 const direction = ["동", "서", "남", "북"];
 const reward = ["우정", "행운", "재물", "지혜", "즐거움", "놀라움"];
