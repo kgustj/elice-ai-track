@@ -5,6 +5,7 @@
     "scripts": {
         "start": "nodemon ./app.js",
         "train": "nodemon ./train.js",
+        "register": "nodemon ./register.js",
         "server": "nodemon ./server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
