@@ -25,17 +25,17 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 dotenv.config();
 
-// mongoose
-//   .connect(process.env.MONGODB_DOMAIN, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => {
-//     console.log("Connected To MongoDB");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+mongoose
+    .connect(process.env.MONGODB_DOMAIN, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected To MongoDB");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 /**
  * ? dotenv의 기능이 뭔가요?
