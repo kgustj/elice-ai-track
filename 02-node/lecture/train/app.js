@@ -47,5 +47,5 @@ app.use("/", userRouter);
 app.use("/board", boardRouter);
 
 app.listen(process.env.PORT, () => {
-  console.log(`${process.env.PORT}번 포트에서 실행되고 있어요!`);
+    console.log(`${process.env.PORT}번 포트에서 실행되고 있어요!`);
 });
