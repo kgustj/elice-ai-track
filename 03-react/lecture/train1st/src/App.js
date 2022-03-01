@@ -21,31 +21,25 @@ function Nav(props) {
             props.setPostId(postId);
         };
     }
+
     return (
         <nav>
             <ol>
-                <li>
-                    <a href="/" onClick={clickHandler(0)}>
-                        HTML
-                    </a>
-                </li>
-                <li>
-                    <a href="/" onClick={clickHandler(1)}>
-                        CSS
-                    </a>
-                </li>
-                <li>
-                    <a href="/" onClick={clickHandler(2)}>
-                        JavaScript
-                    </a>
-                </li>
+                {articleList.map((value, index) => (
+                    <li>
+                        <a href="/" onClick={clickHandler(index)}>
+                            {value.title}
+                        </a>
+                    </li>
+                ))}
             </ol>
         </nav>
     );
 }
-
+// properties -> props
 function Article(props) {
     const article = articleList[props.postId];
+
     return (
         <article>
             <h2>{article.title}</h2>
@@ -56,6 +50,7 @@ function Article(props) {
 
 function App() {
     const [id, setId] = useState(0);
+
     return (
         <>
             <HeaderTag></HeaderTag>
