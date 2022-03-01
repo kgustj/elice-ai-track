@@ -14,18 +14,30 @@ function HeaderTag() {
     );
 }
 
-function Nav() {
+function Nav(props) {
+    function clickHandler(postId) {
+        return (event) => {
+            event.preventDefault();
+            props.setPostId(postId);
+        };
+    }
     return (
         <nav>
             <ol>
                 <li>
-                    <a href="/">HTML</a>
+                    <a href="/" onClick={clickHandler(0)}>
+                        HTML
+                    </a>
                 </li>
                 <li>
-                    <a href="/">CSS</a>
+                    <a href="/" onClick={clickHandler(1)}>
+                        CSS
+                    </a>
                 </li>
                 <li>
-                    <a href="/">JavaScript</a>
+                    <a href="/" onClick={clickHandler(2)}>
+                        JavaScript
+                    </a>
                 </li>
             </ol>
         </nav>
@@ -47,7 +59,7 @@ function App() {
     return (
         <>
             <HeaderTag></HeaderTag>
-            <Nav></Nav>
+            <Nav setPostId={setId}></Nav>
             <Article postId={id}></Article>
         </>
     );
