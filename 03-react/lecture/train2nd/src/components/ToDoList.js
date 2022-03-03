@@ -1,13 +1,16 @@
-import ToDo from "./ToDo";
+import styled from "styled-components";
+import Todo from "./Todo";
 
-const ToDoList = ({ toDoList, toggleHandler }) => {
+const StyledUl = styled.ul`
+    padding: 0;
+`
+
+const TodoList = ({ toDoList, toggleHandler }) => {
     return (
-        <ul>
-            {toDoList.map((v) => (
-                <ToDo value={v} toggleHandler={toggleHandler}></ToDo>
-            ))}
-        </ul>
+        <StyledUl className="to-do-list">
+            {toDoList.map((v) => <Todo key={v.id} value={v} toggleHandler={toggleHandler}></Todo>)}
+        </StyledUl>
     );
 };
 
-export default ToDoList;
+export default TodoList;
