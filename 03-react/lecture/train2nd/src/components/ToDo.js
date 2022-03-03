@@ -34,7 +34,7 @@ const Todo = ({ value, toggleHandler }) => {
     return (
         <StyledLi id={`todo-${id}`}>
             <StyledLabel htmlFor={id}>
-                <input type="checkbox" id={id} onChange={clickHandler} checked={!!isCompleted}></input>
+                <input type="checkbox" id={id} onChange={clickHandler} checked={!isCompleted}></input>
                 {content}
             </StyledLabel>
             <StyledButton onClick={() => alert("implement me")}>삭제</StyledButton>

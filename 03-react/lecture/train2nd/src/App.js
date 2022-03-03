@@ -1,16 +1,8 @@
-import styled from "styled-components";
-import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import useAxios from "./tools/useAxios";
-
-const Container = styled.div`
-    width: 350px;
-    margin: 10px auto;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-`;
+import axios from "axios";
 
 const initialList = [
     { id: 1, content: "상쾌하게 기상하기", isCompleted: true },
@@ -22,75 +14,70 @@ const initialList = [
 ];
 
 function App() {
-    const [isLoading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [toDoList, setToDoList] = useState(initialList);
-    const [lastFetched, setLastFetched] = useState(new Date());
 
     useEffect(() => {
         useAxios.setup();
-        const fetch = async () => {
+        async function fetch() {
             const resp = await axios.get("/");
-
             return resp.data.records;
-        };
+        }
 
-        fetch().then((list) => {
-            list.sort((a, b) => {
-                return Date.parse(a.createdTime) - Date.parse(b.createdTime);
+        fetch().then((v) => {
+            const fetchedList = v.map((v) => {
+                return {
+                    id: v.id,
+                    content: v.fields.Name,
+                    isCompleted: v.fields.isCompleted || false,
+                };
             });
-            setToDoList(
-                list.map((v) => {
-                    return { id: v.id, content: v.fields.Name, isCompleted: v.fields.isCompleted };
-                }),
-            );
+            setToDoList(fetchedList);
             setLoading(false);
         });
-    }, [lastFetched]);
+    }, []);
 
-    const handleToggle = async (id) => {
-        let found = undefined;
+    function handleToggle(id) {
         const mapped = toDoList.map((todo) => {
-            if (todo.id === id) {
-                return (found = { ...todo, isCompleted: !todo.isCompleted });
-            } else return { ...todo };
+            if (todo.id === id) return { ...todo, isCompleted: !todo.isCompleted };
+            else return { ...todo };
         });
-
+        console.log(mapped);
         setToDoList(mapped);
+    }
 
-        if (!!found) {
-            await axios.patch(`/${id}`, { fields: { Name: found.content, isCompleted: found.isCompleted } }).then(console.log);
-        }
-    };
-
-    const handleSubmit = async (value) => {
-        await axios.post("/", { records: [{ fields: { Name: value, isCompleted: false } }] }).then((v) => {
-            setLastFetched(new Date());
-            let copy = [
-                ...toDoList,
-                ...v.data.records.map((todo) => {
-                    return { id: todo.id, content: todo.fields.Name, isCompleted: todo.fields.isCompleted };
-                }),
-            ];
-            // window.location.reload(false);
-            // setToDoList(copy);
-            console.log(v.data);
+    async function handleSubmit(content) {
+        const resp = await axios.post("/", {
+            records: [
+                {
+                    fields: {
+                        Name: content,
+                        isCompleted: false,
+                    },
+                },
+            ],
         });
+        // console.log(resp);
 
-        // let copy = [...toDoList, { id: toDoList.length + 1, content: value, isCompleted: false }];
-        // setToDoList(copy);
-    };
+        let copied = [
+            ...toDoList,
+            ...resp.data.records.map((v) => {
+                return {
+                    id: v.id,
+                    content: v.fields.Name,
+                    isCompleted: v.fields.isCompleted || false,
+                };
+            }),
+        ];
+        setToDoList(copied);
+    }
 
-    if (isLoading)
-        return (
-            <Container>
-                <span>Loading...</span>
-            </Container>
-        );
+    if (loading) return <div>Loading...</div>;
     return (
-        <Container>
+        <div>
             <TodoInput submitHandler={handleSubmit}></TodoInput>
             <TodoList toDoList={toDoList} toggleHandler={handleToggle}></TodoList>
-        </Container>
+        </div>
     );
 }
 
