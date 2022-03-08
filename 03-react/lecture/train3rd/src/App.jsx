@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import useAxios from "./tools/useAxios";
 
 const Container = styled.div`
@@ -35,50 +35,42 @@ function App() {
         };
 
         fetch().then((list) => {
-            list.sort((a, b) => Date.parse(a.createdTime) - Date.parse(b.createdTime));
+            list.sort((a, b) => {
+                return Date.parse(a.createdTime) - Date.parse(b.createdTime);
+            });
             setToDoList(
-                list.map((v) => ({
-                    id: v.id,
-                    content: v.fields.Name,
-                    isCompleted: v.fields.isCompleted,
-                })),
+                list.map((v) => {
+                    return { id: v.id, content: v.fields.Name, isCompleted: v.fields.isCompleted };
+                }),
             );
             setLoading(false);
         });
     }, [lastFetched]);
 
     const handleToggle = async (id) => {
-        let found;
+        let found = undefined;
         const mapped = toDoList.map((todo) => {
             if (todo.id === id) {
-                found = { ...todo, isCompleted: !todo.isCompleted };
-                return found;
-            }
-            return { ...todo };
+                return (found = { ...todo, isCompleted: !todo.isCompleted });
+            } else return { ...todo };
         });
 
         setToDoList(mapped);
 
-        if (found) {
-            await axios
-                .patch(`/${id}`, {
-                    fields: { Name: found.content, isCompleted: found.isCompleted },
-                })
-                .then(console.log);
+        if (!!found) {
+            await axios.patch(`/${id}`, { fields: { Name: found.content, isCompleted: found.isCompleted } }).then(console.log);
         }
     };
 
     const handleSubmit = async (value) => {
         await axios.post("/", { records: [{ fields: { Name: value, isCompleted: false } }] }).then((v) => {
             setLastFetched(new Date());
-            // const copy = [
-            //   ...toDoList,
-            //   ...v.data.records.map((todo) => ({
-            //     id: todo.id,
-            //     content: todo.fields.Name,
-            //     isCompleted: todo.fields.isCompleted,
-            //   })),
-            // ];
+            let copy = [
+                ...toDoList,
+                ...v.data.records.map((todo) => {
+                    return { id: todo.id, content: todo.fields.Name, isCompleted: todo.fields.isCompleted };
+                }),
+            ];
             // window.location.reload(false);
             // setToDoList(copy);
             console.log(v.data);
@@ -88,18 +80,35 @@ function App() {
         // setToDoList(copy);
     };
 
-    if (isLoading) {
+    async function handleDelete(id) {
+        await axios.delete(`/${id}`).then((v) => {
+            setLastFetched(new Date());
+        });
+    }
+
+    async function handleUpdate(id, content) {
+        let found = undefined;
+        const mapped = toDoList.map((todo) => {
+            if (todo.id === id) {
+                return (found = { ...todo, content });
+            } else return { ...todo };
+        });
+
+        setToDoList(mapped);
+
+        await axios.patch(`/${id}`, { fields: { Name: found.content, isCompleted: found.isCompleted } }).then(console.log);
+    }
+
+    if (isLoading)
         return (
             <Container>
                 <span>Loading...</span>
             </Container>
         );
-    }
-
     return (
         <Container>
-            <TodoInput submitHandler={handleSubmit} />
-            <TodoList toDoList={toDoList} toggleHandler={handleToggle} />
+            <TodoInput submitHandler={handleSubmit}></TodoInput>
+            <TodoList toDoList={toDoList} toggleHandler={handleToggle} deleteHandler={handleDelete} updateHandler={handleUpdate}></TodoList>
         </Container>
     );
 }

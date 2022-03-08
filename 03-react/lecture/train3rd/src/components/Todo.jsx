@@ -1,7 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
 import "./Todo.css";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const StyledLi = styled.li`
     list-style: none;
@@ -26,34 +25,35 @@ const StyledButton = styled.button`
     cursor: pointer;
 `;
 
-function Todo({ value, toggleHandler }) {
+const Todo = ({ value, toggleHandler, deleteHandler, updateHandler }) => {
     const { id, content, isCompleted } = value;
     const [isEditing, setIsEditing] = useState(false);
-    const [updatingContent, setUpdatingContent] = useState("");
+    const [updatingContent, setUpdatingContent] = useState(content);
 
-    const clickHandler = () => {
+    const clickHandler = (event) => {
         toggleHandler(id);
     };
 
-    const clickDeleteHandler = (event) => {
+    function clickDeleteHandler(event) {
         event.preventDefault();
         deleteHandler(id);
-    };
+    }
 
-    const changeInputHandler = (event) => {
+    function changeInputHandler(event) {
         setUpdatingContent(event.target.value);
-    };
+    }
 
-    const keyPressHandler = (event) => {
-        if (event.cherCode === 13) {
+    function keyPressHandler(event) {
+        if (event.charCode === 13) {
             updateHandler(id, updatingContent);
+            setIsEditing(false);
         }
-    };
+    }
 
     return (
         <StyledLi id={`todo-${id}`}>
             <StyledLabel htmlFor={id}>
-                <input type="checkbox" id={id} onChange={clickHandler} checked={!!isCompleted} />
+                <input type="checkbox" id={id} onChange={clickHandler} checked={!!isCompleted}></input>
                 {isEditing ? <input value={updatingContent} onChange={changeInputHandler} onKeyPress={keyPressHandler}></input> : <>{content}</>}
             </StyledLabel>
             <StyledButton onClick={clickDeleteHandler} delete={true}>
@@ -62,15 +62,6 @@ function Todo({ value, toggleHandler }) {
             <StyledButton onClick={() => setIsEditing(true)}>수정</StyledButton>
         </StyledLi>
     );
-}
-
-Todo.propTypes = {
-    value: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        isCompleted: PropTypes.bool.isRequired,
-    }).isRequired,
-    toggleHandler: PropTypes.func.isRequired,
 };
 
 export default Todo;
