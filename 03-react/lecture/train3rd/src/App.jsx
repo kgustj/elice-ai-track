@@ -22,6 +22,7 @@ const initialList = [
 ];
 
 function App() {
+    // context = 문맥, 맥락
     const [isLoading, setLoading] = useState(true);
     const [toDoList, setToDoList] = useState(initialList);
     const [lastFetched, setLastFetched] = useState(new Date());
