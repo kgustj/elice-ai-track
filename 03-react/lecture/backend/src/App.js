@@ -1,6 +1,6 @@
 import "./App.css";
 import { Link, Routes, Route, useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useReducer } from "react";
 
 function Article(props) {
     return (
@@ -118,29 +118,44 @@ function Update(props) {
 function App() {
     console.log("App render");
     const navigate = useNavigate();
-    let [topics, setTopics] = useState([
+    // let [topics, setTopics] = useState([
+    //   {id:1, title:'html', body:'html is ...'},
+    //   {id:2, title:'css', body:'css is ...'},
+    //   {id:3, title:'js', body:'js is ...'}
+    // ]);
+    function topicsReducer(oldTopics, action) {
+        let newTopics = [...oldTopics];
+        switch (action.type) {
+            case "CREATE":
+                const newTopic = { id: action.id, title: action.title, body: action.body };
+                newTopics.push(newTopic);
+                break;
+            case "UPDATE":
+                for (let i = 0; i < newTopics.length; i++) {
+                    if (newTopics[i].id === action.id) {
+                        newTopics[i].title = action.title;
+                        newTopics[i].body = action.body;
+                        break;
+                    }
+                }
+                break;
+        }
+        return newTopics;
+    }
+    const initTopics = [
         { id: 1, title: "html", body: "html is ..." },
         { id: 2, title: "css", body: "css is ..." },
         { id: 3, title: "js", body: "js is ..." },
-    ]);
+    ];
+    const [topics, topicsDispatch] = useReducer(topicsReducer, initTopics);
     let [nextId, setNextId] = useState(4);
     function createHandler(_title, _body) {
-        let newTopics = [...topics];
-        const newTopic = { id: nextId, title: _title, body: _body };
-        newTopics.push(newTopic);
-        setTopics(newTopics);
+        topicsDispatch({ type: "CREATE", id: nextId, title: _title, body: _body });
         navigate("/read/" + nextId);
         setNextId(nextId + 1);
     }
     function updateHandler(_id, _title, _body) {
-        let newTopics = [...topics];
-        for (let i = 0; i < newTopics.length; i++) {
-            if (newTopics[i].id === _id) {
-                newTopics[i].title = _title;
-                newTopics[i].body = _body;
-            }
-        }
-        setTopics(newTopics);
+        topicsDispatch({ type: "UPDATE", id: _id, title: _title, body: _body });
         navigate("/read/" + _id);
     }
     return (
@@ -160,6 +175,7 @@ function App() {
         </>
     );
 }
+
 function Control() {
     const params = useParams();
     console.log("params", params);
