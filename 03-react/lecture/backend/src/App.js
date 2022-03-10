@@ -1,10 +1,18 @@
 import "./App.css";
 import { Link, Routes, Route, useParams, useNavigate } from "react-router-dom";
-import { useState, useReducer } from "react";
+import { useState, useReducer, createContext, useContext } from "react";
+
+const themeDefault = {
+    border: "10px solid gray",
+    padding: 20,
+    margin: 20,
+};
+const themeContext = createContext(themeDefault);
 
 function Article(props) {
+    const theme = useContext(themeContext);
     return (
-        <article>
+        <article style={theme}>
             <h2>{props.title}</h2>
             {props.body}
         </article>
@@ -12,8 +20,9 @@ function Article(props) {
 }
 
 function Header(props) {
+    const theme = useContext(themeContext);
     return (
-        <header>
+        <header style={theme}>
             <h1>
                 <Link to="/">{props.title}</Link>
             </h1>
@@ -22,6 +31,7 @@ function Header(props) {
 }
 
 function Nav(props) {
+    const theme = useContext(themeContext);
     let lis = [];
     for (let i = 0; i < props.topics.length; i++) {
         let t = props.topics[i];
@@ -33,7 +43,7 @@ function Nav(props) {
     }
 
     return (
-        <nav>
+        <nav style={theme}>
             <ol>{lis}</ol>
         </nav>
     );
@@ -125,9 +135,10 @@ function App() {
     // ]);
     function topicsReducer(oldTopics, action) {
         let newTopics = [...oldTopics];
+        const { id, title, body } = action;
         switch (action.type) {
             case "CREATE":
-                const newTopic = { id: action.id, title: action.title, body: action.body };
+                const newTopic = { id, title, body };
                 newTopics.push(newTopic);
                 break;
             case "UPDATE":
@@ -139,6 +150,8 @@ function App() {
                     }
                 }
                 break;
+            default:
+                break;
         }
         return newTopics;
     }
@@ -149,6 +162,7 @@ function App() {
     ];
     const [topics, topicsDispatch] = useReducer(topicsReducer, initTopics);
     let [nextId, setNextId] = useState(4);
+
     function createHandler(_title, _body) {
         topicsDispatch({ type: "CREATE", id: nextId, title: _title, body: _body });
         navigate("/read/" + nextId);
@@ -158,10 +172,16 @@ function App() {
         topicsDispatch({ type: "UPDATE", id: _id, title: _title, body: _body });
         navigate("/read/" + _id);
     }
+
+    const theme = useContext(themeContext);
+    const newTheme = { ...theme };
+    newTheme.backgroundColor = "yellow";
     return (
         <>
-            <Header title="React"></Header>
-            <Nav topics={topics}></Nav>
+            <themeContext.Provider value={newTheme}>
+                <Header title="React"></Header>
+                <Nav topics={topics}></Nav>
+            </themeContext.Provider>
             <Routes>
                 <Route path="/" element={<Article title="Welcome" body="Hello, WEB"></Article>}></Route>
                 <Route path="/read/:id" element={<Read topics={topics}></Read>}></Route>
@@ -177,10 +197,11 @@ function App() {
 }
 
 function Control() {
+    const theme = useContext(themeContext);
     const params = useParams();
     console.log("params", params);
     return (
-        <ul>
+        <ul style={theme}>
             <li>
                 <Link to="/create">Create</Link>
             </li>
