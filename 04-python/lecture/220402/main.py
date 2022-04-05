@@ -5,7 +5,6 @@ def main():
     '''
     이 부분은 수정하지 마세요.
     '''
-
     line = [int(v) for v in input().split()]
     m = line[0]
 
