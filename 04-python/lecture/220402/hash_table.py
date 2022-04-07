@@ -1,9 +1,3 @@
-'''
-1. LinkedListElement 클래스를 완성하세요.
-2. orderManager 클래스를 완성하세요.
-'''
-
-
 class LinkedListElement:
     def __init__(self, data, myPrev, myNext):
         self.data = data

@@ -1,9 +1,3 @@
-'''
-1. LinkedListElement 클래스를 완성하세요.
-2. orderManager 클래스를 완성하세요.
-'''
-
-
 class LinkedListElement:
     def __init__(self, data, myPrev, myNext):
         self.data = data
@@ -64,3 +58,32 @@ class orderManager:
                 current = current.myNext
                 count += 1
         return -1
+
+
+def main():
+    '''
+    이 부분은 수정하지 마세요.
+    '''
+    line = [int(v) for v in input().split()]
+    m = line[0]
+
+    manager = orderManager()
+
+    for i in range(m):
+        line = [int(v) for v in input().split()]
+
+        if line[0] == 1:
+            manager.addOrder(line[1])
+        elif line[0] == 2:
+            manager.removeOrder(line[1])
+        elif line[0] == 3:
+            myOrder = manager.getOrder(line[1])
+
+            if myOrder == -1:
+                print("-1")
+            else:
+                print(str(manager.getOrder(line[1])))
+
+
+if __name__ == "__main__":
+    main()

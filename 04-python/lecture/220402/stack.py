@@ -1,9 +1,3 @@
-'''
-CheckParen 함수를 완성하세요.
-단, Stack 클래스를 사용하세요.
-'''
-
-
 class Stack:
     '''
     List를 이용하여 다음의 method들을 작성하세요.
@@ -72,10 +66,8 @@ def checkParen(p):
 
 
 def main():
-    '''
-    테스트를 위한 코드입니다.
-    '''
     x = input()
+
     print(checkParen(x))
 
 

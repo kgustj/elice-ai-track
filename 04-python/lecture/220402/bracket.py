@@ -1,8 +1,3 @@
-'''
-함수 find_order를 구현하세요.
-'''
-
-
 class Stack:
     '''
     List를 이용하여 다음의 method들을 작성하세요.
@@ -75,10 +70,8 @@ def find_order(p):
 
 
 def main():
-    '''
-    테스트를 위한 코드입니다.
-    '''
     p = input()
+
     print(*find_order(p))
 
 

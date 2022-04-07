@@ -1,13 +1,4 @@
-'''
-함수 processOrder를 구현하세요.
-'''
-
-
 class orderInfo:
-    '''
-    이 부분은 수정하지 마세요.
-    '''
-
     def __init__(self, t, d, v):
         self.time = t
         self.duration = d
@@ -60,9 +51,6 @@ def processOrder(orders):
 
 
 def main():
-    '''
-    이 부분은 수정하지 마세요.
-    '''
     p = int(input())
 
     orders = []
