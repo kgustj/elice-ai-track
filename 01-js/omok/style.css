@@ -1,0 +1,133 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+    overflow: hidden;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    height: 100%;
+    background-color: BurlyWood;
+}
+
+.col {
+    border: 1px solid black;
+    cursor: pointer;
+    flex: 1;
+}
+
+.col:hover:not(.black, .white) {
+    background: rgb(218, 168, 104);
+}
+
+.col:active:not(.black, .white) {
+    background: rgb(216, 138, 35);
+}
+
+.black {
+    background-image: url("./img/black.png");
+    background-size: 38px;
+}
+
+.white {
+    background-image: url("./img/white.png");
+    background-size: 38px;
+}
+
+#turn {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    border: solid 1px black;
+    border-radius: 12px;
+}
+
+#turn .text {
+    height: 23px;
+    text-align: center;
+    font-weight: 600;
+    padding: 4px 0 0 0;
+}
+
+#turn img {
+    height: 37px;
+    margin: 0 auto;
+    padding: 0 0 6px 0;
+}
+
+@media (min-width: 321px) and (max-width: 425px) {
+    .panel {
+        width: 390px;
+        height: 390px;
+    }
+    #turn {
+        top: -72px;
+        width: 60px;
+        height: 60px;
+    }
+
+    #turn .text {
+        height: 17px;
+        font-size: 14px;
+        padding: 4px 0 0 0;
+    }
+
+    #turn img {
+        height: 32px;
+        padding: 2px 0 6px 0;
+    }
+
+    .black {
+        background-size: 24px;
+    }
+
+    .white {
+        background-size: 24px;
+    }
+}
+@media (max-width: 320px) {
+    .panel {
+        width: 300px;
+        height: 300px;
+    }
+    #turn {
+        top: -72px;
+        width: 60px;
+        height: 60px;
+    }
+
+    #turn .text {
+        height: 17px;
+        font-size: 14px;
+        padding: 4px 0 0 0;
+    }
+
+    #turn img {
+        height: 32px;
+        padding: 2px 0 6px 0;
+    }
+
+    .black {
+        background-size: 18px;
+    }
+
+    .white {
+        background-size: 18px;
+    }
+}
