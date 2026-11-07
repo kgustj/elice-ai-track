@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <input type="button" value="inline" onclick="
+            alert(event.target.value);
+        ">
+        <input type="button" id="ae" value="addEventListener">
+        <input type="button" id="ae2" value="addEventListener 2">
+        <script>
+            function clickHandler(evt){
+                alert(evt.target.value);
+            }
+            function clickHandler2(evt){
+                alert(evt.target.value);
+            }
+            document.querySelector('#ae').addEventListener('click', clickHandler);
+            document.querySelector('#ae').addEventListener('click', clickHandler2);
+
+            document.querySelector('#ae2').addEventListener('click', clickHandler);
+            
+        </script>
+    </body>
+</html>
