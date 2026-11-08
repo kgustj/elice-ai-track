@@ -6,10 +6,9 @@
 
 ## 실행
 
-`public/index.html`을 브라우저로 열면 됩니다.
+`index.html`을 브라우저로 열면 됩니다.
 
 ## 구성
 
-- `public/index.html`, `style.css`: 바둑판 화면
-- `public/index.js`: 착수, 차례 표시, 승패 판정
-- `.gitlab-ci.yml`: GitLab Pages 배포 설정 (GitHub에서는 동작하지 않음)
+- `index.html`, `style.css`: 바둑판 화면
+- `index.js`: 착수, 차례 표시, 승패 판정
