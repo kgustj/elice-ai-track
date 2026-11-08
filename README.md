@@ -10,7 +10,7 @@
 | [`02-node/ai4-backend-mvp`](02-node/ai4-backend-mvp) | Node.js·Express | 게시판 백엔드 MVP | 2022.05 |
 | [`03-react/lecture`](03-react/lecture) | React | 1~4차 실습 과제, Context API, useReducer, 예제 컴포넌트 | 2022.03 ~ |
 | [`03-react/ai4-frontend-mvp`](03-react/ai4-frontend-mvp) | React | 포트폴리오 프론트 MVP | 2022.04 |
-| [`04-python`](04-python) | Python | 데이터 분석(월드컵·포켓몬·팁 데이터), 자료구조(스택·큐·해시·트리·힙), 알고리즘(재귀·완전탐색·DP) | 2022.03 ~ 04 |
+| [`04-py`](04-py) | Python | 데이터 분석(월드컵·포켓몬·팁 데이터), 자료구조(스택·큐·해시·트리·힙), 알고리즘(재귀·완전탐색·DP) | 2022.03 ~ 04 |
 | [`05-ai`](05-ai) | 딥러닝·자연어처리 | TensorFlow 실습 | 2022.05 |
 | [`06-git`](06-git) | Git | GitLab 기능과 마크다운 연습 | 2022.03 |
 | [`06-git/project-sample`](06-git/project-sample) | Git | 팀 프로젝트용 GitLab 템플릿 (이슈·MR 템플릿, README 양식) | 2021.09 |
