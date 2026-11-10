@@ -6,7 +6,7 @@
 |---|---|---|---|
 | [`01-js/lecture`](01-js/lecture) | HTML·CSS·JavaScript | 선택자, 박스 모델, 그리드, 변수·함수·객체, 이벤트, Ajax, Promise. `draft/`는 같은 실습의 초안 | 2022.01 ~ |
 | [`01-js/omok`](01-js/omok) | JavaScript | 15×15 오목 게임 (개인 실습) | 2022.01 |
-| [`01-js/crocket`](01-js/crocket) | JavaScript·jQuery | 자바스크립트 & 제이쿼리 응용 실습 페이지 (스크롤 내비게이션, 이미지 슬라이더) | 2022.01 |
+| [`01-js/crocket`](01-js/crocket) | JavaScript·jQuery | "하트여왕 크로켓경기" 소개 페이지: 스크롤 내비게이션, 이미지 슬라이더, 탭 | 2022.01 |
 | [`02-node/lecture`](02-node/lecture) | Node.js·Express | NodeBird(SNS 클론), MongoDB 게시판, 라우팅·쿠키·Pug, JWT API, REST API | 2022.02 ~ |
 | [`02-node/ai4-backend-mvp`](02-node/ai4-backend-mvp) | Node.js·Express | 게시판 백엔드 MVP | 2022.05 |
 | [`03-react/lecture`](03-react/lecture) | React | 1~4차 실습 과제, Context API, useReducer, 예제 컴포넌트 | 2022.03 ~ |
